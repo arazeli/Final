@@ -1,0 +1,18 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+  .return-logo{
+      margin-top: 50px;
+      margin-bottom: 100px;
+      text-align: center;
+  }
+
+  .returnscontainer{
+      text-align: center;
+      width: 850px;
+      font-size: 14px;
+      margin-left: 240px;
+  }

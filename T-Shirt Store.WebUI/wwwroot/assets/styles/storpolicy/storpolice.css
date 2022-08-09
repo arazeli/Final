@@ -1,0 +1,49 @@
+
+.vertical{
+    position: relative;
+    bottom: -200px;
+    left: 1270px;
+}
+
+  .vertical ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 20px;
+    padding: 0px;
+    width: 60px;
+    background-color: white;
+    position: fixed;
+    height: 25%;
+    text-align: center;
+    overflow: auto; 
+  }
+
+  .vertical li a {
+    text-decoration: none;
+  }
+  .about-logo{
+      margin-top: 50px;
+      margin-bottom: 100px;
+      text-align: center;
+  }
+  .policycontainer{
+      text-align: center;
+      font-size: 14px;
+  }
+  .policytext-care{
+      width: 650px;
+      margin-left: 350px;
+      margin-top: 50px;
+  }
+  .policytext-Safety{
+    width: 650px;
+    margin-left: 350px;
+    margin-top: 50px;
+  }
+  .policytext-Wholesale{
+    width: 650px;
+    margin-left: 350px; 
+    margin-top: 50px;
+  }
+ 

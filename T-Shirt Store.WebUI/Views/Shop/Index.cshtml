@@ -1,0 +1,229 @@
+﻿@model ShopIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<aside>
+    <div class="shop-logo">
+        <img src="./Assets/images/shopall-img/shopall-logo.png" alt="">
+    </div>
+</aside>
+<div class="shopcontainer">
+    <div class="sidenav">
+        <div class="categories">
+            <h5>Categories</h5>
+           @Extension.GetCategoriesRaw(Model.Categories)
+        </div>
+
+        <a href="#" class="accordion"><h6>Brands</h6></a>
+        <div class="panel">
+            <ul class="brand">
+
+                @foreach (var item in Model.Brands)
+                {
+                    <li><a href="#">@item.Name</a></li>
+                }
+
+            </ul>
+        </div>
+
+        <a href="#" class="accordion"><h6>Color</h6></a>
+        <div class="panel">
+            <ul class="colorpro">
+                @foreach (var item in Model.Productcolors)
+                {
+                    <li><a href="#">@item.Name</a></li>
+                }
+
+            </ul>
+        </div>
+
+        <a href="#" class="accordion"><h6>Size</h6></a>
+        <div class="panel">
+            <ul class="size">
+                @foreach (var item in Model.Productsizes)
+                {
+                    <li><a href="#">@item.Name</a></li>
+                }
+
+            </ul>
+        </div>
+
+    </div>
+
+
+
+    <div id="product-container-shop">
+
+        <div class="product-item-shop">
+            <spam id="praduct-best-shop">Best Seller</spam>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card1.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <spam id="praduct-best-shop">Best Seller</spam>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card2.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card3.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card4.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card5.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card6.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card7.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card8.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card8.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card9.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card10.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card11.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop"></span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card12.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card13.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card14.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card15.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card16.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <span id="praduct-sale-shop">Sale</span>
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card17.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card18.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+        <div class="product-item-shop">
+            <a href="#">
+                <img src="./Assets/images/shopall-img/shopall -card19.png" alt="">
+                <p class="view-btn">quick view</p>
+            </a>
+            <p class="product-name-shop">I'm a product</p>
+            <span class="price-shop">$25.00</span>
+        </div>
+    </div>
+</div>
+

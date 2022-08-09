@@ -1,0 +1,113 @@
+﻿@model ContactPost
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<aside>
+    <div class="contact-logo">
+        <img src="~/Assets/images/contact-img/contact-logo.png" alt="">
+    </div>
+</aside>
+<div class="contact-container">
+    <div class="flopcus">
+        <div class="cont1">
+            <h5>Flagship Store</h5>
+            <p> 500 Terry Francois St. <br> San Francisco, CA 94158 <br> 123-456-7890</p>
+        </div>
+        <div class="cont1">
+            <h5>Opening Hours</h5>
+            <p>Mon - Fri: 7am - 10pm <br>​​Saturday: 8am - 10pm <br> ​Sunday: 8am - 11pm</p>
+        </div>
+        <div class="cont1">
+            <h5>Customer Service</h5>
+            <p> 1-800-000-000 <br> 123-456-7890 <br> info@my-domain.com </p>
+        </div>
+    </div>
+    <div class="headline">
+        <h5>Stockists</h5>
+    </div>
+    <div class="stockists">
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 123-456-7890</p>
+        </div>
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 8 123-456-7890</p>
+        </div>
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 123-456-7890</p>
+        </div>
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 123-456-7890</p>
+        </div>
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 123-456-7890</p>
+        </div>
+        <div class="stoctext">
+            <p>500 Terry Francois St.San Francisco, CA 94158 123-456-7890</p>
+        </div>
+    </div>
+</div>
+
+<section>
+    <form class="help" id="contactForm" method="post">
+        <div class="enter">
+            <input asp-for="FullName" id="yourname" placeholder="Name">
+            <span asp-validation-for="FullName"></span>
+        </div>
+        <div class="enter">
+            <input asp-for="Email" id="Email" placeholder="Email">
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="enter">
+            <input asp-for="Message" id="help" placeholder="How Can We Help">
+            <span asp-validation-for="Message"></span>
+        </div>
+        <div class="enter">
+            <button id="go">submit</button>
+        </div>
+    </form>
+</section>
+
+
+
+
+@section js{
+
+    <script>
+
+     $(document).ready(function () {
+
+        $('#contactForm').submit(function(e){
+
+            e.preventDefault();
+
+            let formData = new FormData(e.currentTarget);
+
+            $.ajax({
+
+                type: "POST",
+                url: "@Url.Action("Contact")",
+                data: formData,
+                processData:false,
+                contentType:false,
+                success: function (response) {
+
+                    if (response.error == true)
+                    {
+                        toastr.error(response.message,'Error!!');
+                        return;
+                    }
+
+                    toastr.success(response.message, 'Success');
+
+                    e.currentTarget.reset();
+                }
+            });
+
+        });
+    });
+
+    </script>
+
+}
+

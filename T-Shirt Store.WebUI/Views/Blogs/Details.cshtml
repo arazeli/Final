@@ -1,0 +1,286 @@
+﻿@model BlogPost
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main-blogpost-container">
+
+    <div class="blog-container" style="margin-left: 10px;">
+        <div class="post-single">
+            <div class="post-media">
+                <a>
+                    <img src="~/uploads/images/@Model.ImagePath" alt="post">
+                </a>
+            </div>
+            <div class="post-details">
+                <div class="post-meta">
+                    by <a href="#" class="post-author">John Doe</a>
+                    on <a href="#" class="post-date">@Model.CreateDate.ToString("MMM d, yyyy")</a>
+                    | <a href="#" class="post-comment"><span>2</span> Comments</a>
+                </div>
+                <h4 class="post-title">
+                    <a >
+                        @Model.Title
+                    </a>
+                </h4>
+                <div class="post-body">
+                    @Html.Raw(Model.Body)
+                </div>
+
+                <div class="post-author-detail">
+                    <div class="author-media">
+                        <a href="#">
+                            <img src="./Assets/images/blog-img/3.jpg" alt="avatar" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="author-body">
+                        <div class="author-header">
+                            <div>
+                                <span class="author-title">AUTHOR</span>
+                                <h4 class="author-name ">John Doe</h4>
+                            </div>
+                            <div>
+                                <a href="#" class="author-link">
+                                    View all posts
+                                    by John Doe
+                                </a>
+                            </div>
+                        </div>
+                        <div class="author-content">
+                            <p class="author-text">
+                                Praesent dapibus, neque id cursus faucibus, tortor neque
+                                egestas auguae, eu vulputate magna eros euerat. Aliquam erat
+                                volutpat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-footer ">
+                    <div class="post-tags">
+                        <a href="#" class="tag">classic</a>
+                        <a href="#" class="tag">converse</a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon social-facebook" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon social-twitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon social-pinterest" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mainrelatedpost">
+
+            <div class="related-post-container">
+                <div class="post">
+                    <a href="#">
+                        <img src="./Assets/images/blog-img/34.jpg" alt="">
+                    </a>
+                </div>
+                <div class="post-details">
+                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
+                    <p class="post-content">
+                        Lorem ipsum dolor sit amet,onadipiscing
+
+                    </p>
+                    <a href="post-single.html" class="btn-readmore">Read more</a>
+                </div>
+            </div>
+            <div class="related-post-container">
+                <div class="post">
+                    <a href="#">
+                        <img src="./Assets/images/blog-img/34.jpg" alt="">
+                    </a>
+                </div>
+                <div class="post-details">
+                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
+                    <p class="post-content">
+                        Lorem ipsum dolor sit amet,onadipiscing
+
+                    </p>
+                    <a href="post-single.html" class="btn-readmore">Read more</a>
+                </div>
+
+            </div>
+            <div class="related-post-container">
+                <div class="post">
+                    <a href="#">
+                        <img src="./Assets/images/blog-img/34.jpg" alt="">
+                    </a>
+                </div>
+                <div class="post-details">
+                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
+                    <p class="post-content">
+                        Lorem ipsum dolor sit amet,onadipiscing
+
+                    </p>
+                    <a href="post-single.html" class="btn-readmore">Read more</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="comments" style="margin-top: 15px;">
+            <h3 class="titleforcomment">3 Comments</h3>
+            <ul>
+                <li>
+                    <div class="comment">
+                        <figure class="comment-media">
+                            <a href="#">
+                                <img src="./Assets/images/blog-img/5.jpg" alt="avatar">
+                            </a>
+                        </figure>
+                        <div class="comment-body">
+                            <div class="comment-user">
+                                <span class="comment-date">November 9, 2018 at 2:19 pm</span>
+                                <h4><a href="#">Jimmy Pearson</a></h4>
+                            </div>
+
+                            <div class="comment-content ">
+                                <p>
+                                    Sed pretium, ligula sollicitudin laoreet viverra, tortor libero
+                                    sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut
+                                    justo. Suspendisse potenti.
+                                </p>
+                            </div>
+                            <a href="#" class="btn-repley" style="margin-bottom: 5px;">REPLY</a>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="comment">
+                                <figure class="comment-media">
+                                    <a href="#">
+                                        <img src="./Assets/images/blog-img/5.jpg" alt="avatar">
+                                    </a>
+                                </figure>
+
+                                <div class="comment-body">
+                                    <div class="comment-user">
+                                        <span class="comment-date">
+                                            November 9, 2018 at 2:19
+                                            pm
+                                        </span>
+                                        <h4><a href="#">Lena Knight</a></h4>
+                                    </div>
+
+                                    <div class="comment-content ">
+                                        <p>Morbi interdum mollis sapien. Sed ac risus.</p>
+                                    </div>
+                                    <a href="#" class=" btn-repley">REPLY</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="comment">
+                        <figure class="comment-media">
+                            <a href="#">
+                                <img src="./Assets/images/blog-img/6.jpg" alt="avatar">
+                            </a>
+                        </figure>
+
+                        <div class="comment-body">
+                            <div class="comment-user">
+                                <span class="comment-date">November 9, 2018 at 2:19 pm</span>
+                                <h4><a href="#">Johnathan Castillo</a></h4>
+                            </div>
+
+                            <div class="comment-content mb-2">
+                                <p>
+                                    Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod
+                                    dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu,
+                                    dapibus eu, fermentum et, dapibus sed, urna.
+                                </p>
+                            </div>
+                            <a href="#">REPLY</i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="reply">
+            <div class="title-wrapper-text-left">
+                <h3 class="title-text-normal">Leave A Reply</h3>
+                <p>Your email address will not be published. Required fields are marked *</p>
+            </div>
+            <form action="#">
+                <textarea id="reply-message" placeholder="Comment" required=""></textarea>
+                <div class="repley-container">
+                    <div class="repley-message">
+                        <input type="text" class="form-control" id="reply-name" name="reply-name" placeholder="Name *" required="">
+                    </div>
+                    <div class="repley-for-email">
+                        <input type="email" class="form-control" id="reply-email" name="reply-email" placeholder="Email *" required="">
+                    </div>
+                </div>
+                <button type="submit" class="btn-post-comment">POST COMMENT</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="blogpost-rightcontainer">
+        <form action="#" class="postserach">
+            <input type="text" class="inputforserachblog" name="search" placeholder="Search in Blog" required="">
+            <button class="btn btn-search btn-link" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+
+        <div class="blogcategoryleft">
+
+            <button class="accorblog">Blog Categories</button>
+            <div class="blog">
+                <ul class="blog-search">
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <button class="accorblog">Popular Posts</button>
+        <div class="blog">
+            <a href="#"><img src="./Assets/images/blog-img/5.jpg" alt=""></a>
+            <div class="post-details-right">
+                <div class="post-meta">
+                    <a href="#" class="post-date">Nov 22, 2020</a>
+                </div>
+                <h4 class="post-titleblog">
+                    <a href="#">
+                        The Best
+                        Choice For
+                        Spending Time
+                    </a>
+                </h4>
+            </div>
+        </div>
+
+        <div class="aboutblog">
+            <h3>About us</h3>
+            <div class="aboutblog-text">
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, laboriosam ex soluta debitis qui vitae perferendis esse quidem possimus vel.
+                </p>
+            </div>
+        </div>
+
+        <div class="tagblogcontainer">
+            <h3>Tag Cloud</h3>
+            <div class="tag-body">
+                @foreach (var item in Model.TagCloud)
+                {
+                    <a href="#" class="tag">@item.PostTag.Name</a>
+
+                }
+                
+
+            </div>
+        </div>
+    </div>
+</div>

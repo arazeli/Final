@@ -1,0 +1,288 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+
+.main-blogpost-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.blogpost-rightcontainer.inputforserachblog{
+  width: 260px;
+  height: 45px;
+  padding: 10px 40px 10px 15px;
+}
+
+.fa-magnifying-glass{
+  padding: 6px 10px;
+  margin-bottom: 2px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.post-media-container{
+  display: flex;
+}
+
+.mainrelatedpost{
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.midlelefttext .headerlefttext{
+  font-size: 18px;
+}
+.post-body-text{
+  font-size: 14px;
+}
+.lefttext{
+  font-size: 14px;
+}
+.blogtextlist{
+  font-size: 14px;
+}
+.morbitext{
+  font-size: 14px;
+}
+.midlelefttext .headerblogtextlist{
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.post-details .post-meta a{
+  text-decoration: none;
+color: black;
+font-size: 13px;
+}
+  
+.post-title{
+  font-size: 18px;
+  margin-top: 10px;
+ 
+}
+
+.post{
+  margin: 10px;
+}
+
+.post-content{
+  font-size: 13px;
+  width: 280px;
+}
+
+.btn-repley{
+  margin-bottom: 10px;
+  color: red;
+}
+
+.accorblog {
+  background-color: #eee;
+  color: rgb(117, 20, 20);
+  cursor: pointer;
+  padding: 18px;
+  width: 266.5;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accorblog:hover {
+  background-color: white; 
+}
+
+.blog {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+.blogcategoryleft .blog ul{
+ list-style-type: none;
+}
+
+.blogcategoryleft .blog a {
+    text-decoration: none;
+    color: #222222;
+}
+
+
+
+.post-meta .post-date {
+    color: #222222;
+    font: 13px sans-serif;
+    text-decoration: none;
+   
+}
+
+.blog a img{
+    width: 60px;
+    height: 60px;
+}
+
+.post-details-right{
+    width: 138.58px;
+}
+
+
+
+.post-titleblog{
+    color: #222222;
+    font: 14px sans-serif;
+    text-decoration: none;
+}
+.post-titleblog a{
+  text-decoration: none;
+  color: #222222;
+}
+
+.aboutblog h3{
+    margin-top: 20px;
+  color: #222222;
+  font: 18px sans-serif;
+}
+
+.aboutblog .aboutblog-text{
+  margin-top: 20px;
+  width: 265px;
+}
+
+.aboutblog p{
+    color: #222222;
+    font: 13px sans-serif;
+}
+
+.tagblogcontainer h3{
+    color: #222222;
+    font-size: 18px sans-serif;
+}
+.tagblogcontainer .tag-body .tag{
+    text-decoration: none;
+    color: #222222;
+    border: 1px solid rgb(76, 76, 163);
+}
+
+.tagblogcontainer {
+    width: 272px;
+}
+
+.blog-container a{
+  text-decoration: none;
+  color: #222222;
+}
+.blog-container .post-single .post-media a img{
+  width: 800px;
+  height: 450px;
+}
+
+.post-details .post-meta{
+  color: #222222;
+  font: 13px;
+} 
+.post-title a{
+  font: 24px;
+ 
+}
+.post-body{
+  width: 877.5px;
+}
+.post-body p{
+  font: 13px;
+    
+  }
+.midle-img-text{
+  display: flex;
+}
+.midle-img-text .blog-img-midle .midleimg .img{
+  width: 336px;
+  height: 415px;
+}
+
+.midlelefttext{
+  margin-left: 10px;
+  font: 13px;
+}
+
+.blogtextlist{
+  list-style-type: none;
+}
+
+.headerposttext .posttext h3{
+  color: #222222;
+  font: 18px;
+}
+.post-author-detail .author-media a img{
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+}
+
+.post-author-detail{
+  width: 890px ;
+  display: flex;
+  margin-left: 10px;
+  border: 1px solid black;
+
+}
+
+.author-header{
+  margin: 5px;
+  display: flex;
+}
+
+.author-link {
+  margin-left: 500px;
+}
+
+.post-footer {
+  width: 900px;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.post-tags .tag{
+  color: blueviolet;
+  border: 1px solid rgb(27, 26, 26);
+  background-color: rgb(43, 43, 126);
+}
+
+.social-icons{
+  margin-left: 730px;
+}
+
+#reply-message{
+  width: 910px;
+}
+.repley-container{
+  display: flex;
+}
+.repley-container .repley-message{
+  width: 450px;
+  margin-right: 10px;
+}
+.repley-container .repley-for-email{
+  width: 450px;
+}
+.comment-content{
+  color: #222222;
+  font-size: 13px;
+  width: 50%;
+}
+.comment-body .comment-user h4 a{
+  font-size: 15px;
+}
+
+.btn-post-comment{
+  background-color: blue;
+}

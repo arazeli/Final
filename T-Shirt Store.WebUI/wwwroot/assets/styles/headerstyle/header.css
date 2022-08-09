@@ -1,0 +1,239 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+header{
+  margin-top: 150px;
+}
+header .navbar{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: white;  
+}
+
+.leftnav{
+    display: flex;
+    margin-right: 160px;
+    margin-left: 20px;
+    width: 40%;
+}
+#search-box{
+    border: none;
+    height: 25px;
+    margin-top: 15px;
+}
+.selectbox{
+  padding-top: 15px;
+  padding-left: 10px;
+}
+select{
+background-color: rgb(245, 117, 13);
+color: white;
+width: 150px;
+margin-left: 100px;
+}
+
+header .rightnav{
+    margin-right: 30px;
+    width: 40%;
+}
+header .rightnav ul{
+    padding-top: 10px;
+    margin: 10px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 10px;
+
+}
+.navbar a{
+    text-decoration: none;
+    color: black;
+    margin-right: 30px;
+}
+
+.navbar a:hover{
+    background-color: white;
+    color: rgb(170, 79, 79);
+}
+
+
+#active-list{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+  }
+
+  
+.vertical{
+    position: relative;
+    bottom: -140px;
+    left: 1280px;
+}
+
+  .vertical ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 20px;
+    padding: 0px;
+    width: 50px;
+    background-color: white;
+    position: fixed;
+    height: 25%;
+    text-align: center;
+    overflow: auto; 
+  }
+
+  .vertical li a {
+    text-decoration: none;
+    color: black;
+  }
+
+  #color-text{
+    margin-left: 65px;
+    margin-right:65px ;
+     margin-top: 10px;
+     text-align: center;
+     font-family: Arial, Helvetica, sans-serif;
+     background-color: rgb(245, 117, 13);
+     height: 270px; 
+     box-shadow: 5px 10px 8px #888888;  
+ }
+
+ #color-text #write{ 
+     padding-top: 10px;
+     color: white;
+     font-size: 30px;
+     margin: 20px; 
+ }
+
+ #color-text #links-menu a{
+     text-decoration: none;
+     border: 2px solid white;
+     padding: 10px 60px;
+     color: rgb(95, 86, 86);
+     margin: 30px;
+ }
+ #links-menu{
+     padding-top: 50px;
+ }
+
+ #links-menu a:hover{
+   background-color: white;
+   color:rgb(245, 117, 13);
+ }
+
+ .asideimages{
+     margin-top: 20px;
+     margin: 45px 45px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+ }
+ aside #tagtex{
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    
+ }
+ 
+  
+  
+.product-item{  
+   display: flex;
+   flex-direction: column;
+   margin-left: 10px;
+   margin-top: 10px;
+   font-family: Arial, Helvetica, sans-serif;  
+}
+.product-item a{
+   text-decoration: none;
+}
+.view-btn{
+   position: absolute;
+   background-color: antiquewhite;
+   opacity: 0.0;
+   width: 243px;
+   height: 60px;
+   border: none;
+}
+.price{
+   padding-bottom: 40px;
+}
+
+#product-container{
+   width: 1230px;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-top: 40px;
+   margin-left: 60px;
+}
+.product-name{
+   color: rgb(231, 139, 18);
+   font-size: 16px;
+}
+
+#praduct-best{
+   position: absolute;
+   background-color:  rgb(255, 98, 7);
+}
+
+.product-item:hover .view-btn {
+   opacity: 1;
+   color: rgb(28, 130, 177);
+}
+.productshopall{
+   position: relative;
+   left: 550px;
+}
+#product-shop-all{
+   text-align: center;
+   margin-top: 80px;
+   
+}
+#product-shop-all a{
+   padding: 15px;
+   text-decoration: none;
+   border: 2px solid rgb(245, 117, 13);
+   border-radius: 5px;
+   color: rgb(245, 117, 13);
+   
+}
+
+#product-shop-all a:hover {
+   background-color: rgb(245, 117, 13);
+   color: black;
+ }
+
+  footer{
+    margin-top: 200px;
+    background-color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+footer ul{
+  list-style-type: none;
+}
+footer ul a{
+  text-decoration: none;
+  color: white;
+  margin: 20px;
+}

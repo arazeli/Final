@@ -1,0 +1,61 @@
+﻿
+<header>
+    <nav class="navbar">
+        <div class="leftnav">
+            <a id="active-list" asp-controller="home" asp-action="index">NOUS</a>
+            <input id="search-box" type="text" placeholder="Search..">
+            <div class="selectbox">
+                <select asp-items="@ViewBag.Categories">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="rightnav">
+            <ul>
+                <li>
+                    <a asp-controller="shop" asp-action="index">Shop All</a>
+                </li>
+                <li>
+                    <a asp-controller="blogs"  asp-action="index">Blog</a>
+                </li>
+                <li>
+                    <a asp-controller="home" asp-action="about">About</a>
+                </li>
+                <li>
+                    <a asp-controller="home" asp-action="contact">Contact</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-user"></i>Log In</a></a>
+                </li>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                        aria-controls="offcanvasExample">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                     aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Cart</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div>
+                            Cart is empty.
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="vertical">
+        <ul>
+            <li><a href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+        </ul>
+    </section>
+</header>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BlogPost>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="blogallcontainer">
+
+    @foreach (var item in Model)
+    {
+        <div class="blogpost-all">
+            <div class="post-media-all">
+                <a asp-action="details" asp-route-id="@item.Id">
+                    <img src="~/uploads/images/@item.ImagePath" alt="post">
+                </a>
+            </div>
+            <div class="post-details-all">
+                <div class="post-meta-all">
+                    by <a href="#" class="post-author-all">John Doe</a>
+                    on <a href="#" class="post-date-all">@item.CreateDate.ToString("MMM d, yyyy")</a>
+                    | <a href="#" class="post-comment-all"><span>2</span> Comments</a>
+                </div>
+                <h4 class="post-title-all">
+                <a asp-action="details" asp-route-id="@item.Id">
+                   @item.Title
+                </a></h4>
+                <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Suspenditus libero eu augue.</p>
+                <a asp-action="details" asp-route-id="@item.Id" class="readmore">READ MORE</a>
+            </div>
+        </div>
+
+    }
+
+
+
+</div>

@@ -1,0 +1,64 @@
+﻿.table-operations {
+    text-align: right;
+    min-width: 19px !important;
+    max-width: 34px !important;
+}
+
+.table td .image{
+    width: 100px;
+    object-fit: cover;
+}
+
+.table > thead > tr> th:not(.table-operations){
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table td.cell-sm {
+    max-width: 120px;
+    width: 120px;
+    overflow: hidden;
+   
+}
+
+.table td.cell-md {
+    max-width: 250px;
+    width: 250px;
+}
+
+.ck-content{
+    min-height: 250px;
+
+}
+
+.photo-viewer {
+    width: 200px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    background-image: url(https://image.shutterstock.com/image-vector/photo-camera-vector-icon-600w-1345025204.jpg);
+    cursor: pointer;
+}
+
+
+    .photo-viewer + input[type="file"]{
+        display:none;
+    }
+
+
+
+    @media (max-width: 1200px) {
+        td .ellipse {
+        max-width:50px;
+        white-space: nowrap;
+        overflow: hidden;
+     
+    }
+}
+
+

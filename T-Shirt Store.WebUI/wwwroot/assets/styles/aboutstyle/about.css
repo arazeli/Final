@@ -1,0 +1,23 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+  .about-logo{
+      margin-top: 50px;
+      margin-bottom: 100px;
+      text-align: center;
+  }
+  .about-container{
+      display: flex;
+  }
+  .left-text-about{
+      margin: 100px 80px 80px;
+      width: 50%;
+ }
+
+ .right-foto-about{
+     margin-right: 10px;
+ }
+  

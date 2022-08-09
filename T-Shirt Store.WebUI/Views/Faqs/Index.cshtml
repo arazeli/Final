@@ -1,0 +1,20 @@
+﻿@model List<Faq>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<aside>
+    <div class="faq-logo">
+        <img src="./Assets/images/faq-img/faq-logo.png" alt="">
+    </div>
+</aside>
+<section class="faqsection">
+    @foreach (var item in Model)
+     {
+      <button class="faq" id="=@item.Id">@item.Question</button>
+       <div class="yeni">
+           @Html.Raw(item.Answer)
+       </div>
+     }
+</section>
+

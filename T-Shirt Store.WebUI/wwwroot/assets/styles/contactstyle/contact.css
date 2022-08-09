@@ -1,0 +1,84 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+  .contact-logo{
+      margin-top: 50px;
+      margin-bottom: 100px;
+      text-align: center;
+  }
+
+  .flopcus{
+      display: flex;
+      width: 90%;
+      margin-left: 65px;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      text-align: center;
+  }
+  
+  .cont1{
+    font-size: 15px;
+    margin: 40px;
+  }
+
+  .flopcus .cont1 h5{
+    margin-bottom: 25px;
+  }
+  .headline{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+  .stockists{
+    width: 80%;
+    margin-left: 110px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .stoctext{
+    padding-left: 50px;
+    width: 200px;
+    margin: 40px;
+  }
+  .help{
+    margin-top: 80px;
+    text-align: center;
+    display: flex;
+    margin-left: 180px;
+
+  }
+  #yourname{
+    border: none;
+    width: 200px;
+  }
+ .enter{
+   border: 2px solid red;
+   border-radius: 5px;
+   margin: 10px;
+   color: rgb(124, 114, 101);
+ }
+ #go{
+   border: none;
+   width: 120px;
+ }
+#help{
+  border: none;
+  width: 280px;
+}
+#Email{
+  border: none;
+  width: 280px;
+}
+#text{
+  border: none;
+  width: 280px;
+}
+
+ 
