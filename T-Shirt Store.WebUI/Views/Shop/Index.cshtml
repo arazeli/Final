@@ -10,19 +10,21 @@
 </aside>
 <div class="shopcontainer">
     <div class="sidenav">
-        <div class="categories">
+        @*<div class="categories">
             <h5>Categories</h5>
-           @Extension.GetCategoriesRaw(Model.Categories)
+            @Extension.GetCategoriesRaw(Model.Categories)
         </div>
 
         <a href="#" class="accordion"><h6>Brands</h6></a>
         <div class="panel">
-            <ul class="brand">
+            <ul class="brand" data-entity-name="brands">
 
                 @foreach (var item in Model.Brands)
-                {
-                    <li><a href="#">@item.Name</a></li>
-                }
+                 {
+                    <li><input type="checkbox">
+                        <a href="#">@item.Name</a>
+                    </li>
+                 }
 
             </ul>
         </div>
@@ -30,24 +32,78 @@
         <a href="#" class="accordion"><h6>Color</h6></a>
         <div class="panel">
             <ul class="colorpro">
-                @foreach (var item in Model.Productcolors)
+                @foreach (var item in Model.Colors)
                 {
-                    <li><a href="#">@item.Name</a></li>
+                    <li><input type="checkbox">
+                        <a href="#">@item.Name</a>
+                    </li>
                 }
 
             </ul>
+        </div>*@
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h5>Categories</h5>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="categories">
+                            
+                            @Extension.GetCategoriesRaw(Model.Categories)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h6>Brands</h6>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="brand" data-entity-name="brands">
+
+                            @foreach (var item in Model.Brands)
+                            {
+                                <li>
+                                    <input type="checkbox">
+                                    <a href="#">@item.Name</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h6>Color</h6>
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="colorpro">
+                            @foreach (var item in Model.Colors)
+                            {
+                                <li>
+                                    <input type="checkbox">
+                                    <a href="#">@item.Name</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <a href="#" class="accordion"><h6>Size</h6></a>
-        <div class="panel">
-            <ul class="size">
-                @foreach (var item in Model.Productsizes)
-                {
-                    <li><a href="#">@item.Name</a></li>
-                }
 
-            </ul>
-        </div>
 
     </div>
 
@@ -55,175 +111,44 @@
 
     <div id="product-container-shop">
 
-        <div class="product-item-shop">
-            <spam id="praduct-best-shop">Best Seller</spam>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card1.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <spam id="praduct-best-shop">Best Seller</spam>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card2.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card3.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
+        @foreach (var item in Model.Products)
+        {
+            var imagePath = item.Images.FirstOrDefault()?.ImagePath;
 
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card4.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card5.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card6.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card7.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card8.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card8.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card9.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card10.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card11.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop"></span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card12.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card13.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card14.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card15.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card16.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <span id="praduct-sale-shop">Sale</span>
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card17.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card18.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
-        <div class="product-item-shop">
-            <a href="#">
-                <img src="./Assets/images/shopall-img/shopall -card19.png" alt="">
-                <p class="view-btn">quick view</p>
-            </a>
-            <p class="product-name-shop">I'm a product</p>
-            <span class="price-shop">$25.00</span>
-        </div>
+            <div class="product-item-shop">
+                <a asp-action="details" asp-route-id="1">
+                    <img src="~/uploads/images/@imagePath" alt="">
+                    <p class="view-btn">quick view</p>
+                </a>
+                <p class="product-name-shop">@item.Name</p>
+                <span class="price-shop">$25.00</span>
+            </div>
+        }
+
+
+
+
+
     </div>
 </div>
 
+@*@section js{ 
+
+<script>
+
+
+
+    //function setFilter() {
+    //    const filterObj = {};
+
+    //    $('ul[data-entity-name]').each(function (index, item) {
+    //        const entityPropertyName = $(item).data('entity-name');
+
+    //        filterObj[entityPropertyName] = [];
+
+    //    });
+    //    consolo.log(filterObj);
+    //}
+</script>
+
+}*@

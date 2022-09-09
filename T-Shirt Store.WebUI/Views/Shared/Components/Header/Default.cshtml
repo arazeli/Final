@@ -17,7 +17,7 @@
                     <a asp-controller="shop" asp-action="index">Shop All</a>
                 </li>
                 <li>
-                    <a asp-controller="blogs"  asp-action="index">Blog</a>
+                    <a asp-controller="blogs" asp-action="index">Blog</a>
                 </li>
                 <li>
                     <a asp-controller="home" asp-action="about">About</a>
@@ -25,9 +25,20 @@
                 <li>
                     <a asp-controller="home" asp-action="contact">Contact</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa-solid fa-user"></i>Log In</a></a>
-                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a asp-controller="account" asp-action="Profile"><i class="fa-solid fa-user"></i>@User.GetPrincipalName()</a>
+                    </li>
+
+                }
+                else
+                {
+                    <li>
+                        <a asp-controller="account" asp-action="SignIn"><i class="fa-solid fa-user"></i>Log In</a>
+                    </li>
+                }
+
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                         aria-controls="offcanvasExample">
                     <i class="fa-solid fa-basket-shopping"></i>

@@ -4,73 +4,372 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Product</h4>
+<br />
+<br />
+<br />
+<br />
+<h1>@DateTime.Now.ToString("dd.MM.yyyy HH.mm.ss")</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StockKeepingUnit" class="control-label"></label>
-                <input asp-for="StockKeepingUnit" class="form-control" />
-                <span asp-validation-for="StockKeepingUnit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BrandId" class="control-label"></label>
-                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
-                <span asp-validation-for="BrandId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label"></label>
-                <input asp-for="ShortDescription" class="form-control" />
-                <span asp-validation-for="ShortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreateById" class="control-label"></label>
-                <input asp-for="CreateById" class="form-control" />
-                <span asp-validation-for="CreateById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedByID" class="control-label"></label>
-                <input asp-for="DeletedByID" class="form-control" />
-                <span asp-validation-for="DeletedByID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedDate" class="control-label"></label>
-                <input asp-for="DeletedDate" class="form-control" />
-                <span asp-validation-for="DeletedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<form class="row" asp-action="Create" enctype="multipart/form-data" id="productCreate">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <div style="width: 100%;" class="imager-container" id="viewer1" name="Images">
+
+                @foreach(var item in Model.Images)
+                 {
+                  <label thumb-url='/uploads/images/@item.ImagePath' image-id="@item.Id" 
+                       @(item.IsMain?"checked" : "")></label>
+                 }
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="StockKeepingUnit" class="control-label"></label>
+                    <input asp-for="StockKeepingUnit" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="BrandId" class="control-label"></label>
+                    <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="ShortDescription" class="control-label"></label>
+                    <input asp-for="ShortDescription" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-12">
+        <div class="tab-control" role="tabcontrol">
+            <div class="tab-page" id="specifications" aria-title="Xususiyyetler" selected>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Gosterici</th>
+                            <th>Deyer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in ViewBag.Specifications)
+                        {
+                            var specValue = Model.Specifications.FirstOrDefault(s=>s.SpecificationId==item.Id)?.Value;
+
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    <input type="text"
+                                           class="form-control w-100"
+                                           value="@specValue"
+                                           data-specification-id="@item.Id" />
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-page" id="pricing" aria-title="Qiymetlendirme">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>R.ng</th>
+                            <th>ÖlçÜ</th>
+                            <th>Qiymət</th>
+                            <th class="table-operations">
+                                <button class="btn btn-info" onclick="createPricing(event)">
+                                    Add row
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                           @foreach (var item in Model.Pricings)
+                            {
+                               <tr>
+                                   <td>
+                                     <select asp-items="@ViewBag.Colors" class="form-control select2" selected-id="@item.ColorId"></select>
+                                   </td>
+                                   <td>
+                                     <select asp-items="@ViewBag.Sizes" class="form-control select2" selected-id="@item.SizeId"></select>
+                                   </td>
+                                   <td>
+                                    <input type="text" value="@item.Price" class="form-control" />
+                                   </td>
+                                   <td class="table-operations">
+                                  </td>
+                               </tr>
+
+                           }
+                   </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/libs/multiple-imager-js/css/imager.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/libs/tab-control/tab-control.css">
+
+
+}
+
+@section js{
+    <script src="~/admin/assets/libs/multiple-imager-js/js/imager.js"></script>
+    <script src="~/admin/assets/libs/tab-control/tab-control.js"></script>
+    <script>
+
+        const selectColors = `@Html.DropDownList("ColorId",@ViewBag.Colors,null,htmlAttributes:new {
+                @class="form-control select2",
+                id="#s1#"
+                })`;
+        const selectSizes = `@Html.DropDownList("SizeId",@ViewBag.Sizes,null,htmlAttributes:new {
+                @class="form-control select2",
+                id="#s2#"
+                })`;
+
+        $(document).ready(function () {
+
+
+            $('#viewer1').imgadd({
+                tnWidth: '120px',
+                tnHeight: '120px',
+                fontSize: '55px',
+                plusInnerHtml: '',
+                plusBtnClass: undefined
+            });
+
+
+            $('#pricing select2').each(function (index, item) {
+
+                let selectedId = $(item).attr('selected-id');
+
+                $(item).val(selectedId).trigger('change');
+
+            });
+
+
+
+            $('#productCreate').submit(function (e) {
+
+                e.preventDefault();
+                const btn = $(e.currentTarget).find('input[type=submit]');
+
+                $(btn).attr('disable', 'disabled');
+
+                let formData = new FormData(e.currentTarget);
+
+                let indexer = 0;
+                $('input[data-specification-id]').each(function (index, item) {
+                    const id = $(item).data('specification-id');
+                    const value = $(item).val();
+
+
+                    if (value.length == 0)
+                        return;
+                    console.log(id, value);
+
+                    formData.set(`Specification[${indexer}].Id`, id);
+                    formData.set(`Specification[${indexer}].Value`, value);
+                    indexer++;
+                });
+
+                let pricing = [];
+                $('#pricing tbody tr').each(function (index, item) {
+                    const colorId = $(item).find('td:nth-child(1) select').val();
+                    const sizeId = $(item).find('td:nth-child(2) select').val();
+                    const value = $(item).find('td:nth-child(3) input').val();
+
+
+                    const filtered = pricing.filter((pItem) => {
+                        return pItem.colorId == colorId && pItem.sizeId == sizeId;
+                    });
+
+                    if (filtered.length > 0) {
+                        return;
+                    }
+
+                    pricing.push({
+                        colorId: colorId,
+                        sizeId: sizeId,
+                        price: value
+                    });
+
+                });
+
+                $(pricing).each(function (index, item) {
+                    formData.set(`Pricing[${index}].SizeId`, item.sizeId);
+                    formData.set(`Pricing[${index}].ColorId`, item.colorId);
+                    formData.set(`Pricing[${index}].Price`, item.value);
+
+                });
+
+                $.ajax({
+                    url: '@Url.Action("Edit")',
+                    type: 'post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSent: function (xhr) {
+
+                    },
+                    success: function (response) {
+                        if (response.error == undefined) {
+                            let errors = response.errors.map(err => {
+                                return {
+                                    propertyName: err.propertyName,
+                                    errorMessage: err.errorMessage
+                                };
+                            });
+
+                            showErrors(errors);
+                            return;
+                        }
+                        else if (response.error == true) {
+                            toastr.error(response.message, "Xəta!");
+                            $(btn).removeAttr('disable');
+                            return;
+                        }
+
+                        e.currentTarget.reset();
+                        toastr.success(response.message, "Ugur");
+                        location.href = `@Url.Action("Index")`;
+                    },
+                    error: function (response) {
+                        $(btn).removeAttr('disable');
+                        console.warn(response);
+                    }
+                })
+                    .always(function () {
+
+                    });
+            });
+
+        });
+
+
+
+        function showErrors(errors) {
+            errors = errors.filter(function (item, index, arr) {
+                return arr.map(a => a.propertyName).indexOf(item.propertyName) == index;
+            });
+
+            console.log(errors);
+            $(`#productCreate span.error`).html('');
+
+            $(errors).each(function (index, item) {
+
+                const el = $(`#productCreate input[name="${item.propertyName}"]`);
+
+                let spanError = $(el).next('span.error');
+
+                if (spanError.length == 0) {
+                    spanError = $('<span/>', {
+                        class: 'error',
+                        html: item.errorMessage
+                    });
+
+                    $(spanError).insertAfter(el);
+                }
+                else {
+                    $(spanError).html(item.errorMessage);
+                }
+
+
+
+
+            });
+        }
+
+        function createPricing(e) {
+
+
+
+
+            e.preventDefault();
+
+            const tBody = $(e.currentTarget).closest('table').find('tbody');
+            const tr = $(`<tr>
+                            <td>${(selectColors.replace('#s1#',  newid()))}</td>
+                            <td>${(selectSizes.replace('#s2#',  newid()))}</td>
+                            <td><input type="text"/></td>
+                            </tr>`);
+
+
+            $(tr).find('.select2').each(function (index, item) {
+                $(item).select2();
+            })
+
+
+            $(tBody).append(tr);
+
+        }
+
+        function removePricing(e) {
+            if ($(e.currentTarget).closest('tbody').find('tr').length == 1)
+                return;
+
+            $(e.currentTarget).closest('tr').remove();
+        }
+
+        function newid() {
+            return "s"+'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+    </script>
+}
 

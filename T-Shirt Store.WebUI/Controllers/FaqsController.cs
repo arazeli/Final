@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using T_Shirt_Store.WebUI.Models.DataContexts;
 
 namespace T_Shirt_Store.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class FaqsController : Controller
     {
         readonly T_Shirt_StoreDbContext db;

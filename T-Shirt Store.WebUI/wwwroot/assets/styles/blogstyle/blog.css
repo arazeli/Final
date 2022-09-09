@@ -12,8 +12,8 @@ body{
 }
 
 .blogpost-rightcontainer.inputforserachblog{
-  width: 260px;
-  height: 45px;
+  width: 200px;
+  height: 40px;
   padding: 10px 40px 10px 15px;
 }
 
@@ -283,6 +283,8 @@ font-size: 13px;
   font-size: 15px;
 }
 
-.btn-post-comment{
-  background-color: blue;
+
+.btn-post-comment {
+    margin: 20px 5px 20px 0px;
+    background-color: blue;
 }

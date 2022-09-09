@@ -1,8 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule.Validators
 {
@@ -22,9 +18,9 @@ namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule.Validators
             RuleFor(p => p.CategoryId).GreaterThan(0).WithMessage("Duzgun melumat secilmeyib");
 
             RuleForEach(p => p.Specifications)
-                .ChildRules(cp=>
+                .ChildRules(cp =>
                 {
-                    cp.RuleFor(cpi =>cpi.value)
+                    cp.RuleFor(cpi => cpi.Value)
                     .NotEmpty()
                     .WithMessage("Bos buraxila bilmez");
                 });

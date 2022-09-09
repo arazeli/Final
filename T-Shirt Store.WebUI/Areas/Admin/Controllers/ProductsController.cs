@@ -26,14 +26,18 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        
+        // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
-            var t_Shirt_StoreDbContext = _context.Products
+            var T_Shirt_StoreDbContext = _context.Products
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
-                .Include(p => p.Images.Where(i=>i.IsMain==true));
-            return View(await t_Shirt_StoreDbContext.ToListAsync());
+                .Include(p => p.Images.Where(i => i.IsMain == true));
+
+            var images = await _context.ProductImages.Where(p=>p.DeletedByID == null).ToListAsync();
+
+            ViewBag.Images = images;
+            return View(await T_Shirt_StoreDbContext.ToListAsync());
         }
 
         // GET: Admin/Products/Details/5
@@ -61,13 +65,11 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
         {
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+
             ViewData["Colors"] = new SelectList(_context.Colors, "Id", "Name");
             ViewData["Sizes"] = new SelectList(_context.Sizes, "Id", "Name");
-           
 
-
-
-            ViewBag.Specifications = _context.Specifications.Where(s => s.DeletedByID == null)
+            ViewBag.Specifications = _context.Specifications.Where(s => s.DeletedByID==null)
                 .ToList();
             return View();
         }
@@ -77,18 +79,16 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ProductCreateCommand model)
+        public async Task<IActionResult> Create( ProductCreateCommand model)
         {
-
             var response = await mediator.Send(model);
 
             if (response?.ValidationResult!=null && !response.ValidationResult.IsValid)
             {
                 return Json(response.ValidationResult);
             }
-
-            return Json(new CommandJsonResponse(false, $"Ugurlu emelliyat.Yeni mehsulun kodu: {response.Product.Id}"));
-       
+            return Json(new CommandJsonResponse(false, $"Ugurlu emeliyyat.Yeni mehsulun kodu:{response.Product.Id}"));
+ 
         }
 
         // GET: Admin/Products/Edit/5
@@ -99,13 +99,29 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Include(p=>p.Images)
+                .Include(p => p.Specifications)
+
+                .Include(p => p.Pricings)
+                .ThenInclude(p => p.Color)
+
+                .Include(p => p.Pricings)
+                .ThenInclude(p => p.ProductSize)
+                .FirstOrDefaultAsync(p=>p.Id==id);
             if (product == null)
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
+
+            ViewData["Colors"] = new SelectList(_context.Colors, "Id", "Name");
+            ViewData["Sizes"] = new SelectList(_context.Sizes, "Id", "Name");
+
+            ViewBag.Specifications = _context.Specifications.Where(s => s.DeletedByID == null)
+                .ToList();
+
+            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -114,36 +130,17 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,StockKeepingUnit,BrandId,ShortDescription,Description,CategoryId,Id,CreateById,CreateDate,DeletedByID,DeletedDate")] Product product)
+        public async Task<IActionResult> Edit(ProductEditCommand model)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            var response = await mediator.Send(model);
+
+            if (response?.ValidationResult != null && !response.ValidationResult.IsValid)
             {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return Json(response.ValidationResult);
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            return View(product);
+            return Json(new CommandJsonResponse(false, $"Ugurlu emeliyyat.Yeni mehsulun kodu:{response.Product.Id}"));
+
         }
 
         // GET: Admin/Products/Delete/5

@@ -40,8 +40,22 @@ using T_Shirt_Store.WebUI.AppCode.infrastructure;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\hp\Desktop\T-Shirt Store Solution\T-Shirt Store.WebUI\Views\_ViewImports.cshtml"
+using T_Shirt_Store.WebUI.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\hp\Desktop\T-Shirt Store Solution\T-Shirt Store.WebUI\Views\_ViewImports.cshtml"
+using T_Shirt_Store.WebUI.Models.Entities.Membership;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42680532499c004f5ceaa355893d9a61ec5cf0f6", @"/Views/Home/About.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"27151daa2261bd0f960ecf45a7e62ee28b7b9c9c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c146454e7166413d214fe9f6f694024f6c336318", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_About : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/Assets/images/about-img/contactimg1.png"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -98,7 +112,7 @@ using T_Shirt_Store.WebUI.AppCode.infrastructure;
         <p>
             At Wix we’re passionate about making templates that allow you to build fabulous websites and it’s all thanks to the support and feedback from users like you! Keep up to date wi");
             WriteLiteral("th New Releases and what’s Coming Soon in Wixellaneous in Support. Feel free to tell us what you think and give us feedback in the Wix Forum.\r\n        </p>\r\n    </div>\r\n    <div class=\"right-foto-about\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "42680532499c004f5ceaa355893d9a61ec5cf0f66065", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "42680532499c004f5ceaa355893d9a61ec5cf0f66504", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,19 +18,57 @@ namespace T_Shirt_Store.WebUI.Controllers
         {
             this.db = db;
         }
+        
         public IActionResult Index()
         {
-            
+            ShopIndexViewModel vm = new ShopIndexViewModel();
 
-            var model = new ShopIndexViewModel();
-            model.Brands = db.Brands.ToList();
-            model.Productcolors = db.Colors.ToList();
-            model.Productsizes = db.Sizes.ToList();
-            model.Categories = db.Categories
-                .Include(c=>c.Children)
+            vm.Brands = db.Brands
+                .Where(b => b.DeletedByID == null)
                 .ToList();
 
-            return View(model);
+            vm.Colors = db.Colors
+                .Where(c => c.DeletedByID == null)
+                .ToList();
+
+            vm.Categories = db.Categories
+                .Include(cg=>cg.Children)
+                .ThenInclude(cg => cg.Children)
+                .Where(cg => cg.DeletedByID == null && cg.ParentId == null)
+                .ToList();
+
+            vm.Products = db.Products
+                .Include(p=>p.Images.Where(i=>i.IsMain==true))
+                .Include(p=>p.Brand)
+                .Where(p=>p.DeletedByID==null)
+                .ToList();
+
+
+            return View(vm);
+           
+           
         }
+
+
+
+        public IActionResult Details(int id)
+        {
+           
+            var product = db.Products
+                .Include(p =>p.Images)
+                .FirstOrDefault(p => p.Id == id && p.DeletedByID == null);
+            if (product==null)
+            
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+        //public IActionResult Filter(int categoryId)
+        //{
+        //    var categories = db.Products.Where(p => p.CategoryId == categoryId).ToList();
+
+        //}
+
     }
 }

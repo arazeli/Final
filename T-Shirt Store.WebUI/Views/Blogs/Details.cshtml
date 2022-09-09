@@ -1,36 +1,36 @@
-﻿@model BlogPost
+﻿@model SinglePostViewModel
 @{
     ViewData["Title"] = "Details";
 }
 
 <div class="main-blogpost-container">
 
-    <div class="blog-container" style="margin-left: 10px;">
+    <div class="blog-container" style="margin-left: 10px; margin-top: 20px;">
         <div class="post-single">
             <div class="post-media">
                 <a>
-                    <img src="~/uploads/images/@Model.ImagePath" alt="post">
+                    <img src="~/uploads/images/@Model.Post.ImagePath" alt="post">
                 </a>
             </div>
             <div class="post-details">
                 <div class="post-meta">
                     by <a href="#" class="post-author">John Doe</a>
-                    on <a href="#" class="post-date">@Model.CreateDate.ToString("MMM d, yyyy")</a>
+                    on <a href="#" class="post-date">@Model.Post.CreateDate.ToString("MMM d, yyyy")</a>
                     | <a href="#" class="post-comment"><span>2</span> Comments</a>
                 </div>
                 <h4 class="post-title">
                     <a >
-                        @Model.Title
+                        @Model.Post.Title
                     </a>
                 </h4>
                 <div class="post-body">
-                    @Html.Raw(Model.Body)
+                    @Html.Raw(Model.Post.Body)
                 </div>
 
                 <div class="post-author-detail">
                     <div class="author-media">
                         <a href="#">
-                            <img src="./Assets/images/blog-img/3.jpg" alt="avatar" width="50" height="50">
+                            <img src="~/assets/images/blog-img/5.jpg" alt="avatar" width="50" height="50">
                         </a>
                     </div>
                     <div class="author-body">
@@ -71,53 +71,26 @@
         </div>
         <div class="mainrelatedpost">
 
-            <div class="related-post-container">
-                <div class="post">
-                    <a href="#">
-                        <img src="./Assets/images/blog-img/34.jpg" alt="">
-                    </a>
-                </div>
-                <div class="post-details">
-                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
-                    <p class="post-content">
-                        Lorem ipsum dolor sit amet,onadipiscing
 
-                    </p>
-                    <a href="post-single.html" class="btn-readmore">Read more</a>
-                </div>
-            </div>
-            <div class="related-post-container">
-                <div class="post">
-                    <a href="#">
-                        <img src="./Assets/images/blog-img/34.jpg" alt="">
-                    </a>
-                </div>
-                <div class="post-details">
-                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
-                    <p class="post-content">
-                        Lorem ipsum dolor sit amet,onadipiscing
+            @foreach (var item in Model.RelatedPosts)
+            {
+                <div class="related-post-container">
+                    <div class="post">
+                        <a href="#">
+                            <img src="~/uploads/images/@item.ImagePath" width="380" height="250">
+                        </a>
+                    </div>
+                    <div class="post-details">
+                        <h4 class="post-title"><a href="#">@item.Title</a></h4>
+                        <p class="post-content">
+                            Lorem ipsum dolor sit amet,onadipiscing
 
-                    </p>
-                    <a href="post-single.html" class="btn-readmore">Read more</a>
-                </div>
+                        </p>
+                        <a href="post-single.html" class="btn-readmore">Read more</a>
+                    </div>
 
-            </div>
-            <div class="related-post-container">
-                <div class="post">
-                    <a href="#">
-                        <img src="./Assets/images/blog-img/34.jpg" alt="">
-                    </a>
                 </div>
-                <div class="post-details">
-                    <h4 class="post-title"><a href="#">20% Off Coupon for Week</a></h4>
-                    <p class="post-content">
-                        Lorem ipsum dolor sit amet,onadipiscing
-
-                    </p>
-                    <a href="post-single.html" class="btn-readmore">Read more</a>
-                </div>
-
-            </div>
+             }
 
         </div>
 
@@ -128,7 +101,7 @@
                     <div class="comment">
                         <figure class="comment-media">
                             <a href="#">
-                                <img src="./Assets/images/blog-img/5.jpg" alt="avatar">
+                                <img src="~/Assets/images/blog-img/5.jpg" alt="avatar">
                             </a>
                         </figure>
                         <div class="comment-body">
@@ -152,7 +125,7 @@
                             <div class="comment">
                                 <figure class="comment-media">
                                     <a href="#">
-                                        <img src="./Assets/images/blog-img/5.jpg" alt="avatar">
+                                        <img src="~/Assets/images/blog-img/5.jpg" alt="avatar">
                                     </a>
                                 </figure>
 
@@ -178,7 +151,7 @@
                     <div class="comment">
                         <figure class="comment-media">
                             <a href="#">
-                                <img src="./Assets/images/blog-img/6.jpg" alt="avatar">
+                                <img src="~/Assets/images/blog-img/6.jpg" alt="avatar">
                             </a>
                         </figure>
 
@@ -273,12 +246,16 @@
         <div class="tagblogcontainer">
             <h3>Tag Cloud</h3>
             <div class="tag-body">
-                @foreach (var item in Model.TagCloud)
-                {
+                @foreach (var item in Model.Post.TagCloud)
+                 {
                     <a href="#" class="tag">@item.PostTag.Name</a>
 
-                }
-                
+                 }
+
+                @*<a href="#" class="tag">men</a>
+                <a href="#" class="tag">women</a>
+                <a href="#" class="tag">kids</a>*@
+
 
             </div>
         </div>

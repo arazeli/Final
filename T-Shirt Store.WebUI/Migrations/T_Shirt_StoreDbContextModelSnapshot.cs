@@ -57,6 +57,43 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.ToTable("BlogPosts");
                 });
 
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPostComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreateById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("BlogPostComments");
+                });
+
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPostTag", b =>
                 {
                     b.Property<int>("BlogPostId")
@@ -206,6 +243,210 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.ToTable("Faqs");
                 });
 
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("Roles", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtRoleClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RoleClaims", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Profileimage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("Users", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserClaims", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserLogin", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "ProviderKey");
+
+                    b.ToTable("UserLogins", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles", "Membership");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserToken", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("UserTokens", "Membership");
+                });
+
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.PostTag", b =>
                 {
                     b.Property<int>("Id")
@@ -328,7 +569,7 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImgePath")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsMain")
@@ -409,6 +650,45 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.ToTable("Sizes");
                 });
 
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.ProductSizeColorItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreateById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ProductSizeColorCollection");
+                });
+
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.ProductSpecification", b =>
                 {
                     b.Property<int>("ProductId")
@@ -417,7 +697,7 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.Property<int>("SpecificationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("value")
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId", "SpecificationId");
@@ -498,6 +778,23 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPostComment", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.BlogPost", "BlogPost")
+                        .WithMany()
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.BlogPostComment", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("BlogPost");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPostTag", b =>
                 {
                     b.HasOne("T_Shirt_Store.WebUI.Models.Entities.BlogPost", "BlogPost")
@@ -524,6 +821,57 @@ namespace T_Shirt_Store.WebUI.Migrations
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtRoleClaim", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserClaim", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserLogin", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserRole", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUserToken", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Membership.T_ShirtUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Product", b =>
@@ -583,6 +931,33 @@ namespace T_Shirt_Store.WebUI.Migrations
                     b.Navigation("ProductSize");
                 });
 
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.ProductSizeColorItem", b =>
+                {
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.ProductColor", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T_Shirt_Store.WebUI.Models.Entities.ProductSize", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Size");
+                });
+
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.ProductSpecification", b =>
                 {
                     b.HasOne("T_Shirt_Store.WebUI.Models.Entities.Product", "Product")
@@ -605,6 +980,11 @@ namespace T_Shirt_Store.WebUI.Migrations
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPost", b =>
                 {
                     b.Navigation("TagCloud");
+                });
+
+            modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.BlogPostComment", b =>
+                {
+                    b.Navigation("Children");
                 });
 
             modelBuilder.Entity("T_Shirt_Store.WebUI.Models.Entities.Category", b =>

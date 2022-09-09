@@ -218,7 +218,6 @@
     <Folder Include="AppCode\Modules\CategoryModule\" />
     <Folder Include="AppCode\Modules\ColorModule\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\uploads\images\" />
   </ItemGroup>
 
 </Project>

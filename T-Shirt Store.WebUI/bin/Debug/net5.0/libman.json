@@ -21,6 +21,10 @@
     {
       "library": "fastselect@0.7.3",
       "destination": "wwwroot/admin/assets/libs/fastselect/"
+    },
+    {
+      "library": "ckeditor5@35.0.1",
+      "destination": "wwwroot/admin/assets/libs/ckeditor5/"
     }
   ]
 }

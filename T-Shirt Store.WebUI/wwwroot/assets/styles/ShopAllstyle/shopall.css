@@ -4,16 +4,8 @@ body{
     box-sizing: border-box;
 }
 
-#praduct-sale-shop{
-    position: absolute;
-    width: 50px;
-    background-color:  rgb(255, 98, 7);
-    color: white;
-}
-
-
 .shop-logo{
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 100px;
     text-align: center;
 }
@@ -56,14 +48,6 @@ body{
     color: rgb(231, 139, 18);
     font-size: 16px;
 }
-
-#praduct-best-shop{
-    position: absolute;
-    color: white;
-    background-color:  rgb(255, 98, 7);
-    font-size: 16px;
-}
-
 
 
 .product-item-shop:hover .view-btn {
@@ -126,16 +110,20 @@ body{
     text-decoration: none; 
   }
 
+   .sidenav{
+       width:300px;
+   }
 
-  .active, .accordion:hover {
-    background-color: #ccc; 
-  }
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
   
   .panel {
     display: none;
     background-color: rgb(231, 89, 6);
     overflow: hidden;
     text-align: left;
+    width: 200px
   }
   .panel a{
       padding-right: 15px;

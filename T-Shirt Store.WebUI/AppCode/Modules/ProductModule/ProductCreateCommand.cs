@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using T_Shirt_Store.WebUI.AppCode.Extensions;
 using T_Shirt_Store.WebUI.Models.DataContexts;
 using T_Shirt_Store.WebUI.Models.Entities;
-using me= T_Shirt_Store.WebUI.Models.Entities;
+using me = T_Shirt_Store.WebUI.Models.Entities;
 
 namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule
 {
@@ -50,9 +50,9 @@ namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule
             {
                 var result= validator.Validate(request);
 
-               
 
-                if (result.IsValid)
+
+                if (!result.IsValid)
                 {
                     var response = new ProductCreateCommandResponse
                     {
@@ -73,43 +73,54 @@ namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule
                 product.Name = request.Name;
                 product.StockKeepingUnit = request.StockKeepingUnit;
                 product.BrandId = request.BrandId;
-                
                 product.CategoryId = request.CategoryId;
                 product.ShortDescription = request.ShortDescription;
                 product.Description = request.Description;
 
-
-
-
-                if (request.Specifications!=null && request.Specifications.Length > 0)
+                if (request.Specifications !=null && request.Specifications.Length > 0)
                 {
                     product.Specifications = new List<ProductSpecification>();
+
                     foreach (var spec in request.Specifications)
                     {
                         product.Specifications.Add(new ProductSpecification { 
                            SpecificationId = spec.Id,
-                           value = spec.value
+                           Value = spec.Value
                         });
                     }
                 }
-                
+
                 if (request.Images != null && request.Images.Any(i => i.File != null))
                 {
                     product.Images = new List<ProductImage>();
 
-                    foreach (var productFile in request.Images.Where(i=>i.File!=null))
+                    foreach (var productFile in request.Images.Where(i => i.File != null))
                     {
-                        string name = await env.SaveFile(productFile.File, cancellationToken, "product");
-                        product.Images.Add(new ProductImage { 
+
+                        string fileExtension = Path.GetExtension(productFile.File.FileName);
+
+                        string name2 = $"product-{Guid.NewGuid()}{fileExtension}";
+
+                        string physicalPath = Path.Combine(env.ContentRootPath, "wwwroot", "uploads", "images", name2);
+
+                        using (var fs = new FileStream(physicalPath, FileMode.Create, FileAccess.Write))
+                        {
+                            await productFile.File.CopyToAsync(fs);
+                        }
+
+                        //string name = productFile.File.FileName;
+                        //string name2 = await env.SaveFile(productFile.File, cancellationToken, "product");
+                        product.Images.Add(new ProductImage
+                        {
+                            ImagePath = name2,
+                            IsMain = productFile.IsMain
                         
-                        ImgePath=name,
-                        IsMain= productFile.IsMain
                         });
                     }
                 }
                 else
                 {
-                    ctx.AddModelError("Images","Sekil qeyd edilmeyib");
+                    ctx.AddModelError("Images", "Sekil qeyd edilmeyib");
                     goto l1;
                 }
 
@@ -122,18 +133,20 @@ namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule
                     {
                         product.Pricings.Add(new me.ProductPricing 
                         { 
-                        ColorId=pricing.ColorId,
-                        SizeId = pricing.SizeId,
-                        Price = pricing.Price
-                        });;
+                            ColorId=pricing.ColorId,
+                            SizeId = pricing.SizeId,
+                            Price = pricing.Price
+                        });
 
                     }
                 }
 
                 await db.Products.AddAsync(product,cancellationToken);
+
+                await db.SaveChangesAsync(cancellationToken);
+
                 try
                 {
-                    await db.SaveChangesAsync(cancellationToken);
                     var response = new ProductCreateCommandResponse
                     {
                         Product = product,
@@ -155,34 +168,17 @@ namespace T_Shirt_Store.WebUI.AppCode.Modules.ProductModule
                     return response;
                 }
 
-                l1:
+            l1:
                 return null;
             }
         }
     }
 
-    public class SpecificationKeyValue
-    {
-        public int Id { get; set; }
-        public string value { get; set; }
-    }
+    
 
-    public class ProductPricing
-    {
-        public int ProductId { get; set; }
-        public int SizeId { get; set; }
-        public int ColorId { get; set; }
-        public double Price { get; set; }
+   
 
-    }
-
-    public class ImageItem
-    {
-        public int? Id { get; set; }
-        public bool IsMain { get; set; }
-        public string TempPath { get; set; }
-        public IFormFile File { get; set; }
-    }
+   
 
 
     public class ProductCreateCommandResponse

@@ -1,4 +1,4 @@
-﻿@model T_Shirt_Store.WebUI.Models.Entities.BlogPost
+﻿@model BlogPost
 
 @{
     ViewData["Title"] = "Details";
@@ -9,9 +9,9 @@
         <div class="col-lg-8">
             <div class="page-header-title">
                 <div class="d-inline">
-                    <h4>Brands</h4>
+                    <h4>Blog Posts</h4>
                     <span>
-                        Brandler
+                        Bütün paylaşımların siyahısı
                     </span>
                 </div>
             </div>
@@ -22,53 +22,55 @@
                     <li class="breadcrumb-item" style="float: left;">
                         <a asp-controller="dashboard" asp-action="index"> <i class="feather icon-home"></i> </a>
                     </li>
-
                     <li class="breadcrumb-item" style="float: left;">
-                        <a href="#!">Brendler</a>
+                        <a href="#!">Paylaşımlar</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
 <div class="page-body">
-    <div class="card p-3">
+    <div class="card">
         <div class="card-block">
             <div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Title</label>
+                    <label asp-for="Title" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <p class="form-control">@Model.Title</p>
                     </div>
+                </div>
 
-                    <div class="form-group row">
-                        <label for="file1" class="col-sm-2 col-form-label ">şəkil</label>
-                        <div class="col-sm-10">
-                            <label for="file" class="photo-viewer" id="file-viewer" style="background-image:url(/uploads/images/@Model.ImagePath)"></label>
-                            <input name="file" id="file" type="file" class="form-control" onchange="readFile(this)">
-                        </div>
+                <div class="form-group row">
+                    <label for="file1" class="col-sm-2 col-form-label">Şekil</label>
+                    <div class="col-sm-10">
+                        <label for="file" class="photo-viewer" id="file-viewer" style="background-image:url(/uploads/images/@Model.ImagePath);"></label>
+                        <input name="file" id="file" type="file" class="form-control" onchange="readFile(this)">
                     </div>
+                </div>
 
-
-                    <div class="form-group row">
-                        <label for="file1" class="col-sm-2 col-form-label ">şəkil</label>
-                        <div class="col-sm-10 html-content">
-                            @Html.Raw(Model.Body)
-                        </div>
+                <div class="form-group row">
+                    <label for="file1" class="col-sm-2 col-form-label">Şekil</label>
+                    <div class="col-sm-10 html-content">
+                        @Html.Raw(Model.Body)
                     </div>
-
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2"></label>
                     <div class="col-sm-10">
-                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning m-b-0">Redakte et</a>
-                        <a asp-action="index" type="submit" class="btn btn-primary m-b-0">Go to list</a>
+                        <input asp-for="Id" type="hidden" />
+                        <a asp-action="index" type="submit"
+                           class="btn btn-primary m-b-0">
+                            Go to List
+                        </a>
+                        <a asp-action="edit" asp-route-id="@Model.Id" type="submit"
+                           class="btn btn-primary m-b-0">
+                            Redakte et
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

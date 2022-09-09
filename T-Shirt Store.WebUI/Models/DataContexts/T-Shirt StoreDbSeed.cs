@@ -1,15 +1,85 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using T_Shirt_Store.WebUI.Models.Entities;
+using T_Shirt_Store.WebUI.Models.Entities.Membership;
 
 namespace T_Shirt_Store.WebUI.Models.DataContexts
 {
     public static class T_Shirt_StoreDbSeed
     {
+        //static internal IApplicationBuilder InitMembership(this IApplicationBuilder app)
+        //{
+        //    using (IServiceScope scope = app.ApplicationServices.CreateScope())
+        //    { 
+        //        var userManager = scope.ServiceProvider.GetService<UserManager<T_ShirtUser>>();
+        //        var roleManager = scope.ServiceProvider.GetService<RoleManager<T_ShirtRole>>();
+        //        var configuration = scope.ServiceProvider.GetService<IConfiguration>();
+
+
+        //        var user = userManager.FindByEmailAsync(configuration["membership:superAdmin"]).Result;
+
+        //        if (user == null)
+        //        {
+        //            user = new T_ShirtUser
+        //            {
+        //                Email = configuration["membership:superAdmin"],
+        //                UserName = configuration["membership:superAdmin"],
+        //                EmailConfirmed = true
+        //            };
+
+        //            var identityResult = userManager.CreateAsync(user, configuration["membership:password"]).Result;
+
+        //            if (!identityResult.Succeeded)
+        //                return app;
+
+        //        }
+
+
+
+        //        var roles = configuration["membership:roles"].Split(",", StringSplitOptions.RemoveEmptyEntries);
+
+        //        foreach (var roleName in roles)
+        //        {
+        //            var role = roleManager.FindByNameAsync(roleName).Result;
+
+        //            if (role == null)
+        //            {
+        //                role = new T_ShirtRole
+        //                {
+        //                    Name = roleName
+        //                };
+
+
+        //                var roleResult = roleManager.CreateAsync(role).Result;
+
+        //                if (roleResult.Succeeded)
+        //                {
+        //                    userManager.AddToRoleAsync(user, roleName).Wait();
+
+        //                }
+        //            }
+        //            else if (!userManager.IsInRoleAsync(user, roleName).Result)
+        //            {
+
+        //                userManager.AddToRoleAsync(user, roleName).Wait();
+
+        //            }
+        //        }
+
+
+        //    }
+
+
+        //    return app;
+        //}
+
+
         static internal IApplicationBuilder InitDb(this IApplicationBuilder app)
         {
             using(var scope = app.ApplicationServices.CreateScope())
@@ -45,6 +115,7 @@ namespace T_Shirt_Store.WebUI.Models.DataContexts
 
                 });
             }
+            db.SaveChanges();
         }
 
         private static void InitBrands(T_Shirt_StoreDbContext db)

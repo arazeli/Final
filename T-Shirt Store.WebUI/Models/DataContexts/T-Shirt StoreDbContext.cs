@@ -1,13 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using T_Shirt_Store.WebUI.Models.Entities;
+using T_Shirt_Store.WebUI.Models.Entities.Membership;
 
 namespace T_Shirt_Store.WebUI.Models.DataContexts
 {
-    public class T_Shirt_StoreDbContext : DbContext  /*IdentityDbContext<T_ShirtUser,*/
-    //    T_ShirtRole,
-    //    int,
-    //    T_ShirtUserClaim, T_ShirtUserRole, T_ShirtUserLogin, T_ShirtRoleClaim, T_ShirtUserToken>
+    //public class T_Shirt_StoreDbContext : DbContext
+    public class T_Shirt_StoreDbContext : IdentityDbContext<T_ShirtUser,
+        T_ShirtRole,
+        int,
+        T_ShirtUserClaim,
+        T_ShirtUserRole,
+        T_ShirtUserLogin,
+        T_ShirtRoleClaim,
+        T_ShirtUserToken>
+     
     {
+        
+
         public T_Shirt_StoreDbContext(DbContextOptions<T_Shirt_StoreDbContext> options)
             : base(options)
         {
@@ -28,6 +38,9 @@ namespace T_Shirt_Store.WebUI.Models.DataContexts
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductSpecification> ProductSpecifications { get; set; }
         public DbSet<ProductPricing> ProductPricing { get; set; }
+        public DbSet<ProductSizeColorItem> ProductSizeColorCollection { get; set; }
+        public DbSet<BlogPostComment> BlogPostComments { get; set; }
+
 
 
 
@@ -54,43 +67,46 @@ namespace T_Shirt_Store.WebUI.Models.DataContexts
 
 
 
-            modelBuilder.Entity<BlogPostTag>(e =>
-            {
-                e.HasKey(k => new { k.BlogPostId, k.PostTagId });
 
+
+            modelBuilder.Entity<T_ShirtUser>(e =>
+            {
+                e.ToTable("Users", "Membership");
             });
 
-            //    modelBuilder.Entity<T_ShirtUser>(e => {
-            //        e.ToTable("Users", "Membership");
-            //    });
+            modelBuilder.Entity<T_ShirtRole>(e =>
+            {
+                e.ToTable("Roles", "Membership");
+            });
 
-            //    modelBuilder.Entity<T_ShirtRole>(e => {
-            //        e.ToTable("Roles", "Membership");
-            //    });
+            modelBuilder.Entity<T_ShirtUserClaim>(e =>
+            {
+                e.ToTable("UserClaims", "Membership");
+            });
 
-            //    modelBuilder.Entity<T_ShirtUserClaim>(e => {
-            //        e.ToTable("UserClaims", "Membership");
-            //    });
+            modelBuilder.Entity<T_ShirtUserToken>(e =>
+            {
+                e.HasKey(k => new { k.UserId, k.LoginProvider, k.Name });
+                e.ToTable("UserTokens", "Membership");
+            });
 
-            //    modelBuilder.Entity<T_ShirtUserToken>(e => {
-            //        e.HasKey(k => new { k.UserId, k.LoginProvider, k.Name });
-            //        e.ToTable("UserTokens", "Membership");
-            //    });
+            modelBuilder.Entity<T_ShirtUserLogin>(e =>
+            {
+                e.HasKey(k => new { k.UserId, k.LoginProvider, k.ProviderKey });
+                e.ToTable("UserLogins", "Membership");
+            });
 
-            //    modelBuilder.Entity<T_ShirtUserLogin>(e => {
-            //        e.HasKey(k => new { k.UserId, k.LoginProvider, k.ProviderKey });
-            //        e.ToTable("UserLogins", "Membership");
-            //    });
+            modelBuilder.Entity<T_ShirtRoleClaim>(e =>
+            {
+                e.ToTable("RoleClaims", "Membership");
+            });
 
-            //    modelBuilder.Entity<T_ShirtRoleClaim>(e => {
-            //        e.ToTable("RoleClaims", "Membership");
-            //    });
-
-            //    modelBuilder.Entity<T_ShirtUserRole>(e => {
-            //        e.HasKey(k => new { k.UserId, k.RoleId });
-            //        e.ToTable("UserRoles", "Membership");
-            //    });
-            }
+            modelBuilder.Entity<T_ShirtUserRole>(e =>
+            {
+                e.HasKey(k => new { k.UserId, k.RoleId });
+                e.ToTable("UserRoles", "Membership");
+            });
+        }
         }
 }
 

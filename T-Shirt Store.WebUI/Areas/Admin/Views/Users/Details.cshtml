@@ -1,0 +1,299 @@
+﻿@model T_ShirtUser
+@{ ViewData["Title"] = "Details"; }
+
+
+
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <div class="d-inline">
+                    <h4>Users</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a asp-controller="dashboard"
+                           asp-action="index">
+                            <i class="feather icon-home"></i>
+                        </a>
+                    </li>
+
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a asp-action="">Istifadeciler</a>
+                    </li>
+
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a>Cari Istifadeciye baxmaq baxmaq</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+
+
+
+    <div class="card">
+        <div class="card-block">
+            <h4 class="sub-title">Cari istifadeciye baxmaq</h4>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    Name
+                </label>
+
+                <div class="col-sm-10">
+
+                    <p class="form-control">
+                        @Model.Name
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    Surname
+                </label>
+
+                <div class="col-sm-10">
+
+                    <p class="form-control">
+                        @Model.Surname
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    UserName
+                </label>
+
+                <div class="col-sm-10">
+
+                    <p class="form-control">
+                        @Model.UserName
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    Email
+                </label>
+
+                <div class="col-sm-10">
+
+                    <p class="form-control">
+                        @Model.Email
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+
+                <div class="col-12">
+
+                    <div class="tab-control" role="tabcontrol">
+
+                        <div class="tab-page" id="roles" aria-title="Rollar" selected>
+                            <table class="table table-stripped">
+                                <thead>
+                                    <tr>
+                                        <th class="table-row-select" style="max-width:100px;">
+
+                                        </th>
+                                        <th>
+
+                                            Name
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Tuple<int, string, bool> item in ViewBag.Roles)
+                                    {
+                           <tr>
+
+
+                            <th class="table-row-select">
+
+                                <input type="checkbox"
+                                       @(item.Item3 ? "checked" : "")
+                                       data-role-id="@item.Item1"
+                                       data-user-id="@Model.Id"
+                                       data-role-name="@item.Item2" />
+                            </th>
+
+                            <th>
+                                @item.Item2
+                            </th>
+
+                        </tr>
+}
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <div class="tab-page" id="Principals" aria-title="Selahiyyetler">
+                            <table class="table table-stripped">
+                                <thead>
+                                    <tr>
+                                        <th class="table-row-select">
+
+                                        </th>
+                                        <th>
+
+                                            Name
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Tuple<string, bool> item in ViewBag.Principals)
+                                     {
+
+                                        <tr>
+                                             <th class="table-row-select">
+                                                <input type="checkbox"
+                                                @(item.Item2 ? "checked" : "")
+                                                data-user-id="@Model.Id"
+                                               data-principal-name="@item.Item1" />
+                                             </th>
+
+
+                                           <th>
+                                            @item.Item1
+                                           </th>
+
+                                        </tr>
+                                     }
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning m-b-0">Redakte et</a>
+                    <a asp-action="index" type="submit" class="btn btn-primary m-b-0">Go to list</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/libs/tab-control/tab-control.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/libs/toastr.js/toastr.min.css">
+    <style>
+        th.table-row-select,
+        td.table-row-select {
+            width: 50px,
+            min-width:50px, 
+            max-width:50px,
+            text-align:center;
+        }
+    </style>
+
+
+}
+
+@section js{
+    <script src="~/admin/assets/libs/tab-control/tab-control.js"></script>
+    <script src="~/admin/assets/libs/toastr.js/toastr.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('input[type="checkbox"][data-role-id]').change(function (e) {
+
+                let obj = $(e.currentTarget).data();
+
+                obj.selected = $(e.currentTarget).is(':checked');
+
+                $.ajax({
+                    url:'@Url.Action("SetRole")',
+                    type: 'POST',
+                    data: obj,
+                    contentType:'application/x-www-form-urlencoded',
+                    dataType:'json',
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, 'Uğurludur');
+
+
+                            return;
+                        }
+
+                        console.log(response);
+                        toastr.success(response.message, 'Xəta');
+
+                    },
+                    error: function(response){
+                        console.warn(response);
+                    }
+                });
+            });
+
+            $('input[type="checkbox"][data-principal-name]').change(function (e) {
+
+                let obj = $(e.currentTarget).data();
+                obj.selected = $(e.currentTarget).is(':checked');
+
+                 $.ajax({
+                    url:'@Url.Action("SetPrincipal")',
+                    type: 'POST',
+                    data: obj,
+                    contentType:'application/x-www-form-urlencoded',
+                    dataType:'json',
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, 'Uğurludur');
+
+
+                            return;
+                        }
+
+                        console.log(response);
+                        toastr.success(response.message, 'Xəta');
+
+                    },
+                    error: function(response){
+                        console.warn(response);
+                    }
+                });
+            })
+        });
+
+
+
+    </script>
+
+}

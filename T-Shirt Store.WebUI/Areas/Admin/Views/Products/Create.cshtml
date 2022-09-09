@@ -1,146 +1,134 @@
 ﻿@model Product
-
 @{
     ViewData["Title"] = "Create";
 }
 
-<div class="page-header">
-    <div class="row align-items-end">
-        <div class="col-lg-8">
-            <div class="page-header-title">
-                <div class="d-inline">
-                    <h4>Brands</h4>
-                    <span>
-                        Butun brandlar
-                    </span>
+<br />
+<br />
+<br />
+<br />
+<h1>@DateTime.Now.ToString("dd.MM.yyyy HH.mm.ss")</h1>
+<hr />
+<form class="row" asp-action="Create" enctype="multipart/form-data" id="productCreate">
+
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <div style="width: 100%;" class="imager-container" id="viewer1" name="Images">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="StockKeepingUnit" class="control-label"></label>
+                    <input asp-for="StockKeepingUnit" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="BrandId" class="control-label"></label>
+                    <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="ShortDescription" class="control-label"></label>
+                    <input asp-for="ShortDescription" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="page-header-breadcrumb">
-                <ul class="breadcrumb-title">
-                    <li class="breadcrumb-item" style="float: left;">
-                        <a asp-controller="dashboard" asp-action="index"> <i class="feather icon-home"></i> </a>
-                    </li>
-                    <li class="breadcrumb-item" style="float: left;">
-                        <a href="#!">Brendler</a>
-                    </li>
-                </ul>
+
+    </div>
+
+    <div class="col-12">
+        <div class="tab-control" role="tabcontrol">
+            <div class="tab-page" id="specifications" aria-title="Xususiyyetler" selected>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Gosterici</th>
+                            <th>Deyer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in ViewBag.Specifications)
+                        {
+
+
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    <input type="text"
+                                           class="form-control w-100"
+                                           data-specification-id="@item.Id" />
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-page" id="pricing" aria-title="Qiymetlendirme">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Reng</th>
+                            <th>Size</th>
+                            <th>Qiymet</th>
+                            <th class="table-operations">
+                                <button class="btn btn-info" onclick="createPricing(event)">
+                                    Add row
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
-<div class="page-body">
-    <div class="card p-3">
-        <div class="card-block">
-            <form class="row" asp-action="Create" enctype="multipart/form-data" id="productCreate">
-                <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <div style="width: 100%" class="imager-container" id="viewer1" name="Images">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label asp-for="Name" class="control-label"></label>
-                                <input asp-for="Name" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="StockKeepingUnit" class="control-label"></label>
-                                <input asp-for="StockKeepingUnit" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="BrandId" class="control-label"></label>
-                                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="ShortDescription" class="control-label"></label>
-                                <input asp-for="ShortDescription" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Description" class="control-label"></label>
-                                <input asp-for="Description" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="CategoryId" class="control-label"></label>
-                                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="tab-control" role="tabcontrol">
-                        <div class="tab-page" id="specifications" aria-title="Xususiyyetler" selected>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Gosterici</th>
-                                        <th>Deyer</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                    @foreach (var item in ViewBag.Specifications)
-                                    {
-
-
-                                        <tr>
-                                            <td>
-                                                @item.Name
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       class="form-control w-100"
-                                                       data-specification-id="@item.Id" />
-                                            </td>
-                                        </tr>
-                                    }
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-page" id="pricing" aria-title="Qiymetlendirme">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Reng</th>
-                                        <th>Olcu</th>
-                                        <th>Qiymet</th>
-                                        <th class="table-operations">
-                                            <button class="btn btn-info" onclick="createPricing(event)">
-                                                Add row
-                                            </button>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-success" />
-                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
-                    </div>
-                </div>
-            </form>
+    <div class="col-12">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
         </div>
     </div>
-</div>
+</form>
 
 
 
@@ -202,12 +190,34 @@
                     indexer++;
                 });
 
+                let pricing = [];
                 $('#pricing tbody tr').each(function (index, item) {
                     const colorId = $(item).find('td:nth-child(1) select').val();
                     const sizeId = $(item).find('td:nth-child(2) select').val();
                     const value = $(item).find('td:nth-child(3) input').val();
 
-                    console.log(colorId,sizeId,value);
+
+                    const filtered = pricing.filter((pItem) => {
+                        return pItem.colorId == colorId && pItem.sizeId == sizeId;
+                    });
+
+                    if (filtered.length > 0) {
+                        return;
+                    }
+
+                    pricing.push({
+                        colorId: colorId,
+                        sizeId: sizeId,
+                        price: value
+                    });
+
+                });
+
+                $(pricing).each(function (index, item) {
+                    formData.set(`Pricing[${index}].SizeId`, item.sizeId);
+                    formData.set(`Pricing[${index}].ColorId`, item.colorId);
+                    formData.set(`Pricing[${index}].Price`, item.price);
+
                 });
 
                 $.ajax({
@@ -326,3 +336,4 @@
         }
     </script>
 }
+

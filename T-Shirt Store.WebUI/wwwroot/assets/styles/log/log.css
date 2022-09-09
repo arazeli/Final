@@ -1,0 +1,9 @@
+.registercontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btnregister {
+    text-decoration: none;
+}

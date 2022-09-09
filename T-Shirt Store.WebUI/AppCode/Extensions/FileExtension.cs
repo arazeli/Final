@@ -14,8 +14,8 @@ namespace T_Shirt_Store.WebUI.AppCode.Extensions
 
             string fileExtension = Path.GetExtension(file.FileName);
 
-            string name = $"{(string.IsNullOrWhiteSpace(prefix)?"":prefix+"-")}{Guid.NewGuid()}{fileExtension}";
-            string physicalPath = Path.Combine(env.ContentRootPath, "wwwwroot", "uploads", "Images", name);
+            string name = $"{(string.IsNullOrWhiteSpace(prefix) ? "" : prefix + "-")}{Guid.NewGuid()}{fileExtension}";
+            string physicalPath = Path.Combine(env.ContentRootPath, "wwwwroot", "uploads", "images", name);
 
             using (var fs = new FileStream(physicalPath, FileMode.Create, FileAccess.Write))
             {

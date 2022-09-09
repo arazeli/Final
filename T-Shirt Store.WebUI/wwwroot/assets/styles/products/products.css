@@ -1,0 +1,143 @@
+
+
+
+
+
+
+.forproductcontainer{
+    margin: 40px 0px 40px 150px;
+    display: flex;
+    flex-direction: row;
+}
+
+ .forproductcontainer .forproductcontainerright{
+     width: 600px;
+     margin-left: 20px;
+ }
+ .forproductcontainerright .prod-name{
+     font-size: 20px;
+ }
+ .product-meta .product-sku{
+    font-size: 13px;
+ }
+
+ .comment .comment-body .comment-user h4 a{
+     font-size: 20px;
+
+ }
+ .product-meta .product-brand{
+     font-size: 13px;
+ }
+
+ .prod-price{
+     font-size: 23px;
+     color: rgb(221, 15, 15);
+     margin-left: 40px;
+ }
+ .add-cart a{
+     text-decoration: none;
+     color: black;
+     background-color: rgb(248, 248, 252);
+     height: 50px;
+ }
+ .add-cart{
+     margin-left: 40px;
+ }
+
+
+ #tabcontrol{
+     margin-left: 450px;
+     margin-top: 10px;
+ }
+
+ 
+
+ .comment-user h4 a{
+     text-decoration: none;
+     color: black;
+ }
+
+ #contact{
+     margin-left: 115px;
+ }
+
+.comment-content p{
+    font-size: 13px;
+    width: 900px;
+}
+
+.reply form{
+    width: 900px;
+    margin-left: 50px;
+}
+.tab-pane .list-none{
+    margin-top: 40px;
+  
+}
+
+.tab-pane .list-none li{
+    display: flex;
+    margin-left: 120px;
+    
+}
+
+.tab-pane .list-none li p{
+    margin-left: 100px;
+}
+
+#myTabContent #home{
+    margin-left: 120px;
+    margin-top: 40px;
+}
+
+#myTabContent #home ul{
+    list-style-type: none;
+    
+}
+
+
+
+#prodcontainers{
+    width: 1230px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-left: 60px;
+}
+
+#prodcontainers .Card{
+    margin-bottom: 10px;
+}
+
+.productrelated{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.card .viewdetallbtn{
+    text-decoration: none;
+    position: absolute;
+    background-color: rgb(7, 59, 228);
+    color: black;
+    opacity: 0.0;
+    width: 100%;
+    margin-top: 300px;
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 60px;
+    border: none;
+ }
+ .card:hover .viewdetallbtn {
+    opacity: 1;
+    color: rgb(28, 130, 177);
+ }
+
+ .card-body a{
+ text-align: center;
+ text-decoration: none;
+ color: black;
+ font-size: 14px;
+ }
+
+ 

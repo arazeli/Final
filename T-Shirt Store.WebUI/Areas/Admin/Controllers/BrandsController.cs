@@ -22,13 +22,15 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
           
             this.mediator= mediator;
         }
+
+        [Authorize(Policy = "admin.brands.index")]
         public async Task<IActionResult> Index()
         {
             var data = await mediator.Send(new BrandsAllQuery());
             return View(data);
         }
 
-        [Authorize]
+        [Authorize(Policy = "admin.brands.details")]
         public async Task<IActionResult> Details(BrandSingleQuery query)
         {
             var entity = await  mediator.Send(query);
@@ -38,14 +40,15 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
             }
             return View(entity);
         }
-
+        [Authorize(Policy = "admin.brands.create")]
         public async Task<IActionResult> Create()
         {
            
             return View();
         }
-
+        
         [HttpPost]
+        [Authorize(Policy = "admin.brands.create")]
         public async Task<IActionResult> Create(BrandCreatCommand command)
         {
             if (ModelState.IsValid)
@@ -58,7 +61,7 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(BrandSingleQuery query)
         {
             var entity = await mediator.Send(query);
@@ -75,6 +78,7 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit([FromRoute]int id,BrandEditCommand command)
         {
             if(id != command.Id)
@@ -97,17 +101,12 @@ namespace T_Shirt_Store.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "admin.brands.delete")]
         public async Task<IActionResult> Delete(BrandRemoveCommand command)
-
         {
             var response = await mediator.Send(command);
-
-
-
-
             return Json(response);
            
-        
         }
 
        

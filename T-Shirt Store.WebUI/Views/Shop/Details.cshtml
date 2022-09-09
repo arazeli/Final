@@ -1,0 +1,273 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="forproductcontainer" style="margin-top:200px;">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            @foreach(var item in Model.Images)
+             {
+
+
+                <div class="carousel-item active">
+                <img src="~/uploads/images/@item.ImagePath" class="d-block w-100" alt="...">
+                </div>
+             }
+
+            
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="forproductcontainerright">
+        <h1 class="prod-name">@Model.Name</h1>
+        <div class="product-meta">
+            SKU: <span class="product-sku">@Model.StockKeepingUnit</span>
+            @*BRAND: <span class="product-brand">@Model.Brand?.Name</span>*@
+        </div>
+        <div class="prod-price">$47.34</div>
+        <div class="aboutproduct">
+            <p>@Model.ShortDescription</p>
+        </div>
+        <div class="add-cart">
+            <a href=""><i class="fa-solid fa-bag-shopping"></i> Add To Cart</a>
+        </div>
+
+    </div>
+</div>
+<div id="tabcontrol">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Additional Information</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews (2)</button>
+        </li>
+    </ul>
+</div>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="col-md-6">
+            <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Features</h5>
+            <p class="mb-2">
+                Praesent id enim sit amet.Tdio vulputate eleifend in in tortor.
+                ellus massa. siti iMassa ristique sit amet condim vel, facilisis
+                quimequistiqutiqu amet condim Dilisis Facilisis quis sapien. Praesent id
+                enim sit amet.
+            </p>
+            <ul class="mb-8">
+                <li>Praesent id enim sit amet.Tdio vulputate</li>
+                <li>Eleifend in in tortor. ellus massa.Dristique sitii</li>
+                <li>Massa ristique sit amet condim vel</li>
+                <li>Dilisis Facilisis quis sapien. Praesent id enim sit amet</li>
+            </ul>
+            <h5 class="description-title mb-3 font-weight-semi-bold ls-m">
+                Specifications
+            </h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-semi-bold text-dark pl-0">Material</th>
+                        <td class="pl-4">Praesent id enim sit amet.Tdio</td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-semi-bold text-dark pl-0">Claimed Size</th>
+                        <td class="pl-4">Praesent id enim sit</td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-semi-bold text-dark pl-0">
+                            Recommended Use
+                        </th>
+                        <td class="pl-4">
+                            Praesent id enim sit amet.Tdio vulputate eleifend
+                            in in tortor. ellus massa. siti
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-semi-bold text-dark border-no pl-0">
+                            Manufacturer
+                        </th>
+                        <td class="border-no pl-4">Praesent id enim</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane active in" id="product-tab-additional">
+            <ul class="list-none">
+                <li>
+                    <label>Brands:</label>
+                    <p>SkillStar, SLS</p>
+                </li>
+                <li>
+                    <label>Color:</label>
+                    <p>Blue, Brown</p>
+                </li>
+                <li>
+                    <label>Size:</label>
+                    <p>Large, Medium, Small</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="comments pt-2 pb-10 border-no">
+            <ul>
+                <li>
+                    <div class="comment">
+                        <div class="comment-media">
+                            <a href="#">
+                                <img src="file:///C:/Users/hp/AppData/Local/Temp/Rar$EXa10216.25977/images/blog/comments/1.jpg" alt="avatar">
+                            </a>
+                        </div>
+                        <div class="comment-body">
+                            <div class="comment-rating ratings-container mb-0">
+                                <div class="ratings-full">
+                                    <span class="ratings" style="width:80%"></span>
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div>
+                            </div>
+                            <div class="comment-user">
+                                <span class="comment-date text-body">
+                                    September 22, 2020 at 9:42
+                                    pm
+                                </span>
+                                <h4><a href="#">John Doe</a></h4>
+                            </div>
+
+                            <div class="comment-content">
+                                <p>
+                                    Sed pretium, ligula sollicitudin laoreet viverra, tortor
+                                    libero sodales leo,
+                                    eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo.
+                                    Suspendisse potenti.
+                                    Sed egestas, ante et vulputate volutpat, eros pede semper
+                                    est, vitae luctus metus libero eu augue.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="comment">
+                        <figure class="comment-media">
+                            <a href="#">
+                                <img src="file:///C:/Users/hp/AppData/Local/Temp/Rar$EXa10216.25977/images/blog/comments/1.jpg" alt="avatar">
+                            </a>
+                        </figure>
+
+                        <div class="comment-body">
+                            <div class="comment-rating ratings-container mb-0">
+                                <div class="ratings-full">
+                                    <span class="ratings" style="width:80%"></span>
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div>
+                            </div>
+                            <div class="comment-user">
+                                <span class="comment-date text-body">
+                                    September 22, 2020 at 9:42
+                                    pm
+                                </span>
+                                <h4><a href="#">John Doe</a></h4>
+                            </div>
+
+                            <div class="comment-content">
+                                <p>
+                                    Sed pretium, ligula sollicitudin laoreet viverra, tortor
+                                    libero sodales leo, eget blandit nunc tortor eu nibh. Nullam
+                                    mollis.
+                                    Ut justo. Suspendisse potenti. Sed egestas, ante et
+                                    vulputate volutpat,
+                                    eros pede semper est, vitae luctus metus libero eu augue.
+                                    Morbi purus libero,
+                                    faucibus adipiscing, commodo quis, avida id, est. Sed
+                                    lectus. Praesent elementum
+                                    hendrerit tortor. Sed semper lorem at felis. Vestibulum
+                                    volutpat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="reply">
+
+
+            <form action="#">
+                <textarea id="reply-message" cols="30" rows="6" class="form-control mb-4" placeholder="Comment *" required=""></textarea>
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <input type="text" class="form-control" id="reply-name" name="reply-name" placeholder="Name *" required="">
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <input type="email" class="form-control" id="reply-email" name="reply-email" placeholder="Email *" required="">
+                    </div>
+                </div>
+                <div class="form-checkbox mb-4">
+                    <input type="checkbox" class="custom-checkbox" id="signin-remember" name="signin-remember">
+                    <label class="form-control-label" for="signin-remember">
+                        Save my name, email, and website in this browser for the next time I
+                        comment.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-rounded">Submit<i class="d-icon-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+    <h4 class="productrelated">Related Products</h4>
+    <div id="prodcontainers">
+        <div class="card" style="width: 18rem;">
+            <a href="#"> <img src="~/assets/images/home-img/cardimg1.png" class="card-img-top" alt="..."></a>
+            <a class="viewdetallbtn">QUICK VIEW</a>
+            <div class="card-body">
+                <a href="#">Clothing</a> <br>
+                <a href="#">Product Name</a> <br>
+                <span class="price">$25.00</span>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <a href="#"> <img src="~/assets/images/home-img/cardimg2.png" class="card-img-top" alt="..."></a>
+            <a class="viewdetallbtn">QUICK VIEW</a>
+            <div class="card-body">
+                <a href="#">Clothing</a> <br>
+                <a href="#">Product Name</a> <br>
+                <span class="price">$25.00</span>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <a href="#"> <img src="~/assets/images/home-img/cardimg3.png" class="card-img-top" alt="..."></a>
+            <a class="viewdetallbtn">QUICK VIEW</a>
+            <div class="card-body">
+                <a href="#">Clothing</a> <br>
+                <a href="#">Product Name</a> <br>
+                <span class="price">$25.00</span>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <a href="#"> <img src="~/assets/images/home-img/cardimg4.png" class="card-img-top" alt="..."></a>
+            <a class="viewdetallbtn">QUICK VIEW</a>
+            <div class="card-body">
+                <a href="#">Clothing</a> <br>
+                <a href="#">Product Name</a> <br>
+                <span class="price">$25.00</span>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
